@@ -3,296 +3,448 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Worship Set — plan it Saturday, lead it Sunday</title>
+<title>Worship Set · the tracklist</title>
 <meta name="description" content="Plan worship sets: song, key, BPM, transition notes, scripture segue, leader notes. Save sets and re-run. For worship leaders who actually think about flow.">
-<meta property="og:title" content="Worship Set — plan it Saturday, lead it Sunday">
+<meta property="og:title" content="Worship Set · the tracklist">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/*  ============================================================
+    WORSHIP SET · vinyl tracklist / backstage cue book
+    -----------------------------------------------------------
+    Theme: a worship-album liner-notes layout. The set is a
+    tracklist on the back of a vinyl jacket. Each song = a
+    numbered track with BPM/key timestamps. Warm spotlight
+    amber against stage black, cool blue stage-wash highlights.
+    Concert-poster Anton display.
+    ============================================================ */
+
   :root {
-    --bg: #ebe8db;
-    --panel: #fbf8ec;
-    --ink: #1d1812;
-    --ink-soft: #6b5a44;
-    --ink-faint: #a89880;
-    --accent: #2e5a7e;
-    --accent-light: #6889a0;
-    --warn: #b85c2e;
-    --done: #4a7c3d;
-    --slow: #c9803a;
-    --med: #8a8a3a;
-    --fast: #3a8a5a;
-    --border: #d2c8b0;
-    --serif: Georgia, "Times New Roman", serif;
+    --vinyl:#0a0a0a;
+    --vinyl-deep:#040404;
+    --jacket:#1a1a1a;
+    --jacket-light:#262626;
+    --liner:#f0e5d0;
+    --liner-dim:#c8bda5;
+    --liner-faint:#8a8268;
+    --amber:#e8a73a;
+    --amber-bright:#ffc55a;
+    --amber-deep:#a87018;
+    --blue:#5582b8;
+    --blue-light:#7ca6dc;
+    --slow:#e8a73a;
+    --med:#c8b878;
+    --fast:#5582b8;
+    --rule:rgba(240, 229, 208, 0.12);
+    --rule-strong:rgba(240, 229, 208, 0.28);
+
+    --display:'Anton', Impact, sans-serif;
+    --body:'Plus Jakarta Sans', system-ui, sans-serif;
+    --mono:'Space Mono', monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
+  html, body {
+    background: var(--vinyl);
+    color: var(--liner);
+    font-family: var(--body); font-weight: 400;
+    line-height: 1.55;
     min-height: 100vh;
-    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
   }
-  .container { max-width: 760px; margin: 0 auto; }
-  header { text-align: center; padding: 2rem 0; }
-  header h1 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 6vw, 2.6rem);
-    color: var(--accent);
-    margin-bottom: 0.4rem;
-    letter-spacing: -0.01em;
+  body {
+    padding: 0;
+    background-image:
+      radial-gradient(ellipse 60% 50% at 50% 20%, rgba(232, 167, 58, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(85, 130, 184, 0.06) 0%, transparent 70%);
   }
-  header p {
-    color: var(--ink-soft);
-    font-style: italic;
-    font-size: 0.95rem;
+  body::before {
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/></svg>");
+    opacity:0.08;mix-blend-mode:screen;
   }
 
+  .container { max-width: 760px; margin: 0 auto; padding: 0 28px; position:relative; z-index:2; }
+
+  /* HEADER — album jacket title */
+  header {
+    text-align: left;
+    padding: 48px 0 28px;
+    border-bottom: 3px solid var(--amber);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+  }
+  .label-strip {
+    display: inline-block;
+    font-family: var(--mono); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.32em;
+    color: var(--vinyl); background: var(--amber);
+    padding: 5px 12px;
+    margin-bottom: 18px;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(60px, 11vw, 124px);
+    color: var(--liner);
+    margin: 0;
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  header h1 span { color: var(--amber); }
+  header p {
+    font-family: var(--body); font-weight: 400;
+    font-size: 16px; color: var(--liner-dim);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+  .pressing {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.18em; color: var(--liner-faint);
+    text-align: right; line-height: 1.8;
+    text-transform: uppercase;
+  }
+  .pressing .catno { color: var(--amber); font-weight: 700; display: block; }
+
+  /* TABS — record sides */
   .tabs {
     display: flex;
-    gap: 0.4rem;
-    margin-bottom: 1.5rem;
+    gap: 0;
+    margin: 24px 0 32px;
+    border-bottom: 1px solid var(--rule-strong);
     flex-wrap: wrap;
-    justify-content: center;
+    background: var(--vinyl);
+    position: sticky; top: 0; z-index: 5;
   }
   .tab {
-    padding: 0.55rem 1.1rem;
+    padding: 14px 22px 12px;
     background: transparent;
-    color: var(--ink-soft);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 0.85rem;
+    border: none;
+    color: var(--liner-faint);
     cursor: pointer;
+    font-family: var(--display); font-weight: 400;
+    font-size: 16px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-right: 1px solid var(--rule);
+    position: relative;
+    transition: color .12s;
   }
-  .tab.active {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
+  .tab:last-child { border-right: none; }
+  .tab:hover { color: var(--liner); }
+  .tab.active { color: var(--amber); }
+  .tab.active::after {
+    content:"";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 3px; background: var(--amber);
   }
-  .tab:hover:not(.active) { border-color: var(--accent); color: var(--ink); }
 
+  /* PANELS — liner-notes inserts */
   .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(29,24,18,0.06);
+    background: var(--jacket);
+    border: 1px solid var(--rule-strong);
+    border-left: 3px solid var(--amber);
+    border-radius: 0;
+    padding: 26px 32px 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
   .panel h2 {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    color: var(--accent);
-    margin-bottom: 0.85rem;
+    font-family: var(--display); font-weight: 400;
+    font-size: 30px; color: var(--liner);
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
-  .panel p.help { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 1rem; }
+  .panel h2 .side {
+    display: inline-block;
+    font-family: var(--display); font-size: 18px;
+    color: var(--amber);
+    margin-right: 12px;
+    letter-spacing: 0.2em;
+  }
+  .panel p.help {
+    font-family: var(--body); font-size: 14px;
+    color: var(--liner-dim);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
 
   label {
     display: block;
-    color: var(--accent);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin: 1rem 0 0.4rem;
-    font-weight: 600;
+    font-family: var(--mono); font-weight: 700;
+    color: var(--amber); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    margin: 18px 0 7px;
   }
   label:first-child { margin-top: 0; }
 
   input[type="text"], input[type="date"], input[type="number"], textarea, select {
     width: 100%;
-    border: 1px solid var(--border);
-    background: #fff;
-    border-radius: 6px;
-    padding: 0.65rem 0.9rem;
-    color: var(--ink);
-    font-family: inherit;
-    font-size: 0.95rem;
+    background: var(--vinyl-deep);
+    border: none;
+    border-bottom: 1.5px solid var(--rule-strong);
+    border-radius: 0;
+    padding: 9px 4px;
+    color: var(--liner);
+    font-family: var(--body); font-size: 16px;
     line-height: 1.5;
+    outline: none;
+    transition: border-color .12s;
   }
-  textarea { min-height: 60px; resize: vertical; }
-  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+  textarea { min-height: 72px; resize: vertical; }
+  input:focus, textarea:focus, select:focus { border-bottom-color: var(--amber); }
+  input::placeholder, textarea::placeholder { color: var(--liner-faint); }
+  /* Date input dark-mode */
+  input[type="date"] { color-scheme: dark; }
 
   .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
   }
   @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
 
   button {
-    background: var(--ink);
-    color: var(--bg);
-    border: none;
-    padding: 0.7rem 1.3rem;
-    border-radius: 6px;
+    background: var(--amber); color: var(--vinyl);
+    border: none; border-radius: 0;
+    padding: 11px 22px;
     cursor: pointer;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: var(--display); font-weight: 400;
+    font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background .12s;
   }
-  button:hover { background: var(--accent); }
+  button:hover { background: var(--amber-bright); }
   button.ghost {
-    background: transparent;
-    color: var(--ink-soft);
-    border: 1px solid var(--border);
+    background: transparent; color: var(--liner-dim);
+    border: 1px solid var(--liner-faint);
   }
-  button.ghost:hover { background: var(--bg); color: var(--ink); border-color: var(--accent); }
+  button.ghost:hover { background: var(--liner-faint); color: var(--vinyl); border-color: var(--liner-faint); }
 
-  .row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
+  /* SONG CARDS — tracklist entries with track number */
+  #songs-list {
+    counter-reset: track-counter;
+    border-top: 1px solid var(--rule-strong);
+  }
   .song-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 0.6rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 16px 0 16px 64px;
+    margin-bottom: 0;
+    position: relative;
   }
-  .song-card.dragging { opacity: 0.4; }
+  .song-card.dragging { opacity: 0.35; }
+  .song-card::before {
+    counter-increment: track-counter;
+    content: counter(track-counter, decimal-leading-zero) ".";
+    position: absolute;
+    left: 0; top: 14px;
+    font-family: var(--display); font-weight: 400;
+    color: var(--amber); font-size: 24px;
+    letter-spacing: 0.04em;
+  }
   .song-card .header {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 0.4rem;
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 6px; flex-wrap: wrap;
   }
   .song-card .grip {
-    color: var(--ink-faint);
-    cursor: grab;
-    font-size: 1.1rem;
+    color: var(--liner-faint);
+    cursor: grab; font-size: 1.1rem;
     user-select: none;
   }
   .song-card .grip:active { cursor: grabbing; }
   .song-card .title {
     flex: 1;
-    font-family: var(--serif);
-    color: var(--accent);
-    font-size: 1.1rem;
+    font-family: var(--display); font-weight: 400;
+    color: var(--liner);
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.05;
   }
   .song-card .key-bpm {
-    color: var(--ink-soft);
-    font-size: 0.85rem;
+    font-family: var(--mono); font-weight: 700;
+    color: var(--blue-light);
+    font-size: 12px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 600;
   }
   .song-card .meta {
-    color: var(--ink-faint);
-    font-size: 0.8rem;
-    margin-bottom: 0.4rem;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--liner-faint);
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
   }
   .song-card .notes {
-    color: var(--ink-soft);
-    font-size: 0.88rem;
-    font-style: italic;
+    font-family: var(--body); font-style: italic;
+    color: var(--liner-dim);
+    font-size: 14.5px;
     line-height: 1.55;
-    margin-top: 0.4rem;
+    margin-top: 8px;
     white-space: pre-wrap;
+    padding: 10px 14px;
+    background: var(--vinyl-deep);
+    border-left: 2px solid var(--blue);
   }
   .song-card .scripture {
-    color: var(--slow);
-    font-size: 0.85rem;
-    margin-top: 0.4rem;
-    font-family: var(--serif);
-    font-style: italic;
+    font-family: var(--body); font-style: italic;
+    color: var(--amber);
+    font-size: 13.5px;
+    margin-top: 8px;
+    letter-spacing: 0.02em;
   }
+  .song-card .scripture::before { content: "✦ "; color: var(--amber); }
   .song-card .actions {
-    display: flex;
-    gap: 0.35rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
+    display: flex; gap: 6px;
+    margin-top: 10px; flex-wrap: wrap;
   }
-  .song-card .actions button { padding: 0.3rem 0.65rem; font-size: 0.78rem; }
+  .song-card .actions button {
+    padding: 5px 10px; font-size: 9.5px;
+    letter-spacing: 0.16em;
+  }
+
   .bpm-band {
     display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 8px; height: 8px;
     border-radius: 50%;
-    margin-right: 0.4rem;
+    margin-right: 6px;
+    vertical-align: 1px;
   }
-  .bpm-slow { background: var(--slow); }
+  .bpm-slow { background: var(--slow); box-shadow: 0 0 6px var(--slow); }
   .bpm-med  { background: var(--med); }
-  .bpm-fast { background: var(--fast); }
+  .bpm-fast { background: var(--fast); box-shadow: 0 0 6px var(--fast); }
 
   .set-summary {
-    color: var(--ink-soft);
-    font-size: 0.85rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 11.5px;
+    color: var(--liner-dim);
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule-strong);
+    letter-spacing: 0.04em;
   }
+  .set-summary strong { color: var(--amber); font-weight: 700; }
 
+  /* SAVED SETS */
+  #saved-search { margin-bottom: 16px; }
   .saved-set {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
   }
   .saved-set:last-child { border-bottom: none; }
   .saved-set .name {
-    font-family: var(--serif);
-    color: var(--accent);
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
+    font-family: var(--display); font-weight: 400;
+    color: var(--liner);
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
   }
   .saved-set .meta {
-    color: var(--ink-faint);
-    font-size: 0.78rem;
-    margin-bottom: 0.5rem;
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--amber);
+    margin-bottom: 10px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
   .saved-set .preview {
-    color: var(--ink);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    font-family: var(--body); font-size: 14.5px;
+    color: var(--liner-dim);
+    margin-bottom: 12px; line-height: 1.55;
   }
-  .saved-set .actions { display: flex; gap: 0.35rem; flex-wrap: wrap; }
-  .saved-set .actions button { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
+  .saved-set .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .saved-set .actions button { padding: 6px 12px; font-size: 10px; letter-spacing: 0.16em; }
 
   .empty {
     text-align: center;
-    color: var(--ink-faint);
-    padding: 1.5rem 0;
-    font-style: italic;
+    color: var(--liner-faint);
+    padding: 32px 0;
+    font-family: var(--body); font-style: italic;
+    font-size: 15px;
   }
 
   footer {
-    text-align: center;
-    margin-top: 2rem;
-    color: var(--ink-faint);
-    font-size: 0.8rem;
+    text-align: left;
+    margin-top: 48px;
+    padding: 28px 0 56px;
+    border-top: 1px solid var(--amber);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--liner-faint);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
   }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer a { color: var(--amber); text-decoration: none; border-bottom: 1px dotted var(--amber); }
+  footer a:hover { color: var(--amber-bright); }
+  .credit {
+    font-family: var(--display); font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--liner-faint);
+    margin-top: 14px;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 20px; }
+    header { display: block; padding: 32px 0 22px; }
+    .pressing { text-align: left; margin-top: 14px; }
+    header h1 { font-size: 56px; }
+    .panel { padding: 22px 22px 22px; }
+    .panel h2 { font-size: 22px; }
+    .song-card { padding-left: 48px; }
+    .song-card::before { font-size: 18px; top: 12px; }
+    .song-card .title { font-size: 18px; }
+    .tab { padding: 12px 14px; font-size: 13px; }
+  }
 </style>
 </head>
 <body>
 <div class="container">
 
 <header>
-  <h1>Worship Set</h1>
-  <p>plan it Saturday, lead it Sunday</p>
+  <div>
+    <span class="label-strip">PV · WS-01 · 33⅓ RPM</span>
+    <h1>Worship<br><span>Set</span></h1>
+    <p>plan it Saturday · lead it Sunday · save the set for next time</p>
+  </div>
+  <div class="pressing">
+    <span class="catno">CAT WS-01</span>
+    <span>SIDE A · BUILD</span>
+    <span>SIDE B · SAVED</span>
+    <span>MMXXVI · ACWORTH</span>
+  </div>
 </header>
 
 <div class="tabs">
-  <button class="tab active" data-view="build">Build set</button>
-  <button class="tab" data-view="saved">Saved sets</button>
-  <button class="tab" data-view="manage">Manage</button>
+  <button class="tab active" data-view="build">Side A — Build</button>
+  <button class="tab" data-view="saved">Side B — Saved</button>
+  <button class="tab" data-view="manage">Pressing</button>
 </div>
 
 <div id="view-build" class="view">
   <div class="panel">
-    <h2>Current set</h2>
+    <h2><span class="side">A1</span>Current tracklist</h2>
     <div class="form-grid">
       <div>
         <label>Set name</label>
-        <input type="text" id="set-name" placeholder="e.g., Stonebridge AM 5/24, Identity in Christ">
+        <input type="text" id="set-name" placeholder="Stonebridge AM 5/24, Identity in Christ">
       </div>
       <div>
         <label>Date</label>
         <input type="date" id="set-date">
       </div>
     </div>
-    <label>Opening prayer / call to worship</label>
+    <label>Opening prayer · call to worship</label>
     <textarea id="set-opener" placeholder="Scripture you'll open with. A specific call. Quiet first."></textarea>
-    <div id="songs-list" style="margin-top:1.5rem;"></div>
+    <div id="songs-list" style="margin-top:22px;"></div>
     <div class="set-summary" id="set-summary"></div>
     <div class="row">
       <button id="save-btn">Save this set</button>
@@ -302,53 +454,52 @@
   </div>
 
   <div class="panel">
-    <h2>Add a song</h2>
+    <h2><span class="side">A2</span>Add a track</h2>
     <label>Title</label>
-    <input type="text" id="s-title" placeholder="e.g., Goodness of God / Build My Life / How Great Thou Art">
+    <input type="text" id="s-title" placeholder="Goodness of God · Build My Life · How Great Thou Art">
     <div class="form-grid">
       <div>
         <label>Key</label>
-        <input type="text" id="s-key" placeholder="e.g., G, A, D, Bm — original or your transposition">
+        <input type="text" id="s-key" placeholder="G, A, D, Bm — original or your transposition">
       </div>
       <div>
         <label>BPM</label>
-        <input type="number" id="s-bpm" min="50" max="200" placeholder="e.g., 72, 96, 130">
+        <input type="number" id="s-bpm" min="50" max="200" placeholder="72, 96, 130">
       </div>
     </div>
-    <label>Scripture intro / segue (optional)</label>
-    <input type="text" id="s-scripture" placeholder="e.g., Lamentations 3:22-23 read before song">
+    <label>Scripture intro · segue (optional)</label>
+    <input type="text" id="s-scripture" placeholder="Lamentations 3:22-23 read before song">
     <label>Notes — transition, tempo, who plays, leader cues</label>
-    <textarea id="s-notes" placeholder="e.g., Start with acoustic only. Drop the bridge first time, take it second. Hand off to backup on V2."></textarea>
-    <button id="add-song-btn" style="margin-top:1rem;">Add to set</button>
+    <textarea id="s-notes" placeholder="Start with acoustic only. Drop the bridge first time, take it second. Hand off to backup on V2."></textarea>
+    <button id="add-song-btn" style="margin-top:18px;">Add to set</button>
   </div>
 </div>
 
 <div id="view-saved" class="view" style="display:none;">
   <div class="panel">
-    <h2>Saved sets</h2>
-    <input type="text" id="saved-search" placeholder="Search by name, song, scripture" style="margin-bottom:1rem;">
+    <h2><span class="side">B</span>Saved sets</h2>
+    <input type="text" id="saved-search" placeholder="search by name, song, scripture">
     <div id="saved-list"></div>
   </div>
 </div>
 
 <div id="view-manage" class="view" style="display:none;">
   <div class="panel">
-    <h2>Manage</h2>
+    <h2><span class="side">P</span>Pressing</h2>
     <div class="row">
       <button class="ghost" id="export-btn">Export JSON</button>
       <button class="ghost" id="import-btn">Import JSON</button>
-      <button class="ghost" id="reset-btn" style="color:#b04a4a;border-color:#d8b6b6;">Reset all</button>
+      <button class="ghost" id="reset-btn" style="color:var(--amber-bright);border-color:var(--amber)">Reset all</button>
       <input type="file" id="import-file" accept=".json" style="display:none;">
     </div>
   </div>
 </div>
 
 <footer>
-  <p>For worship leaders who think about flow before Saturday night panic.<br>
-  <a href="https://github.com/thebigjah/worship-set">source</a></p>
+  For worship leaders who think about flow before Saturday-night panic.<br>
+  <a href="https://github.com/thebigjah/worship-set">github.com/thebigjah/worship-set</a>
+  <div class="credit">— PURCELLVENTURES.CO —</div>
 </footer>
-
-</div>
 
 <script>
 'use strict';
