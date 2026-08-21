@@ -69,7 +69,7 @@
 
   .container { max-width: 760px; margin: 0 auto; padding: 0 28px; position:relative; z-index:2; }
 
-  /* HEADER — album jacket title */
+  /* HEADER, album jacket title */
   header {
     text-align: left;
     padding: 48px 0 28px;
@@ -112,7 +112,7 @@
   }
   .pressing .catno { color: var(--amber); font-weight: 700; display: block; }
 
-  /* TABS — record sides */
+  /* TABS, record sides */
   .tabs {
     display: flex;
     gap: 0;
@@ -145,7 +145,7 @@
     height: 3px; background: var(--amber);
   }
 
-  /* PANELS — liner-notes inserts */
+  /* PANELS, liner-notes inserts */
   .panel {
     background: var(--jacket);
     border: 1px solid var(--rule-strong);
@@ -228,7 +228,7 @@
 
   .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
-  /* SONG CARDS — tracklist entries with track number */
+  /* SONG CARDS, tracklist entries with track number */
   #songs-list {
     counter-reset: track-counter;
     border-top: 1px solid var(--rule-strong);
@@ -426,8 +426,8 @@
 </header>
 
 <div class="tabs">
-  <button class="tab active" data-view="build">Side A — Build</button>
-  <button class="tab" data-view="saved">Side B — Saved</button>
+  <button class="tab active" data-view="build">Side A, Build</button>
+  <button class="tab" data-view="saved">Side B, Saved</button>
   <button class="tab" data-view="manage">Pressing</button>
 </div>
 
@@ -462,7 +462,7 @@
     <div class="form-grid">
       <div>
         <label>Key</label>
-        <input type="text" id="s-key" placeholder="G, A, D, Bm — original or your transposition">
+        <input type="text" id="s-key" placeholder="G, A, D, Bm, original or your transposition">
       </div>
       <div>
         <label>BPM</label>
@@ -471,7 +471,7 @@
     </div>
     <label>Scripture intro · segue (optional)</label>
     <input type="text" id="s-scripture" placeholder="Lamentations 3:22-23 read before song">
-    <label>Notes — transition, tempo, who plays, leader cues</label>
+    <label>Notes, transition, tempo, who plays, leader cues</label>
     <textarea id="s-notes" placeholder="Start with acoustic only. Drop the bridge first time, take it second. Hand off to backup on V2."></textarea>
     <button id="add-song-btn" style="margin-top:18px;">Add to set</button>
   </div>
@@ -500,7 +500,7 @@
 <footer>
   For worship leaders who think about flow before Saturday-night panic.<br>
   <a href="https://github.com/thebigjah/worship-set">github.com/thebigjah/worship-set</a>
-  <div class="credit">— PURCELLVENTURES.CO —</div>
+  <div class="credit">, PURCELLVENTURES.CO,</div>
 </footer>
 
 <script>
@@ -624,7 +624,7 @@ function renderCurrentSongs() {
   const tempoFlow = current.songs.map(s => bpmLabel(s.bpm) || '?').join(' → ');
   document.getElementById('set-summary').innerHTML = `
     <strong>${current.songs.length} song${current.songs.length===1?'':'s'}</strong>${avgBpm ? ' · avg ' + avgBpm + ' bpm' : ''}<br>
-    Key flow: ${keys || '—'}<br>
+    Key flow: ${keys || ', '}<br>
     Tempo flow: ${tempoFlow}
   `;
 }
@@ -693,7 +693,7 @@ function exportMd() {
   md += `## Songs\n\n`;
   current.songs.forEach((s, i) => {
     md += `### ${i+1}. ${s.title}\n\n`;
-    if (s.key || s.bpm) md += `**Key:** ${s.key || '—'} · **BPM:** ${s.bpm || '—'}\n\n`;
+    if (s.key || s.bpm) md += `**Key:** ${s.key || ', '} · **BPM:** ${s.bpm || ', '}\n\n`;
     if (s.scripture) md += `**Scripture:** ${s.scripture}\n\n`;
     if (s.notes) md += `**Notes:** ${s.notes}\n\n`;
   });
@@ -719,7 +719,7 @@ function renderSaved() {
     <div class="saved-set">
       <div class="name">${escapeHtml(s.name || '(untitled)')}</div>
       <div class="meta">${s.date || ''} · ${(s.songs || []).length} song${(s.songs || []).length===1?'':'s'}</div>
-      <div class="preview">${(s.songs || []).map(x => escapeHtml(x.title)).join(' → ') || '—'}</div>
+      <div class="preview">${(s.songs || []).map(x => escapeHtml(x.title)).join(' → ') || ', '}</div>
       <div class="actions">
         <button onclick="loadSet('${s.id}')">Load</button>
         <button class="ghost" onclick="duplicateSet('${s.id}')">Duplicate</button>
